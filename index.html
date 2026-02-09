@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Pour Yasmine 🤍</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* AUDIO */
+audio {
+    display: none;
+}
+
+/* PHOTOS DE FOND */
+.bg img {
+    position: absolute;
+    width: 240px;
+    border-radius: 20px;
+    opacity: 0;
+    animation: float 18s infinite alternate, fadeIn 1.5s ease forwards;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.bg img:nth-child(1) {
+    top: 10%;
+    left: 6%;
+}
+
+.bg img:nth-child(2) {
+    bottom: 15%;
+    right: 8%;
+    animation-duration: 22s;
+}
+
+.bg img:nth-child(3) {
+    top: 55%;
+    left: 18%;
+    animation-duration: 26s;
+}
+
+@keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-30px); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 0.3; }
+}
+
+/* CARTE */
+.card {
+    background: rgba(255,255,255,0.96);
+    border-radius: 24px;
+    padding: 38px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    z-index: 2;
+    animation: popIn 1s ease forwards, breathe 4s ease-in-out infinite;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+
+h1 {
+    color: #e63946;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* BOUTONS */
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 6px;
+    transition: 0.3s;
+}
+
+#yes {
+    background: #e63946;
+    color: white;
+}
+
+#yes:hover {
+    transform: scale(1.12);
+}
+
+#no {
+    background: #ccc;
+}
+
+/* TEXTE RÉPONSE */
+#response {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #e63946;
+}
+
+/* COEURS */
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 26px;
+    animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-10%);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110%);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIQUE -->
+<audio autoplay loop>
+    <source src="raindance.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PHOTOS -->
+<div class="bg">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+</div>
+
+<!-- CARTE -->
+<div class="card">
+    <h1>Yasmine 🤍</h1>
+
+    <p>
+        Depuis que tu es entrée dans ma vie, tout me semble plus doux, plus vrai.
+    </p>
+
+    <p>
+        Je ne voulais pas attendre une date spéciale…  
+        je voulais juste te choisir.
+    </p>
+
+    <p><strong>Toi.</strong></p>
+
+    <p style="font-size:16px;">
+        Est-ce que tu accepterais d’être ma Valentine  
+        et surtout, d’être à mes côtés ? 🤍
+    </p>
+
+    <div class="buttons">
+        <button id="yes">OUI 🤍</button>
+        <button id="no">NON 🤍</button>
+    </div>
+
+    <div id="response"></div>
+
+    <p style="margin-top:25px;">— Raphael</p>
+</div>
+
+<!-- COEURS -->
+<div class="hearts" id="hearts"></div>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const response = document.getElementById("response");
+const hearts = document.getElementById("hearts");
+
+let noCount = 0;
+
+yesBtn.onclick = () => {
+    response.innerHTML = "JE T'AIME MON BBBBB 💖💖💖";
+    launchHearts();
+};
+
+noBtn.onclick = () => {
+    noCount++;
+    if (noCount < 3) {
+        response.innerHTML = "T’ES SUUUUR ? 😭";
+    } else {
+        response.innerHTML = "AHH BON 😭💔";
+    }
+};
+
+function launchHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        hearts.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+    }, 200);
+}
+</script>
+
+</body>
+</html>
+
+
